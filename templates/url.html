@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Input - Phishing Simulation Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F4ECF7;
+            color: #4A235A;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #E8DAEF;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(74, 35, 90, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #4A235A;
+            font-weight: 600;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        input, button {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 25px;
+            border: none;
+            margin-top: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+        input {
+            background-color: #F4ECF7;
+            color: #4A235A;
+        }
+        button {
+            background-color: #6C3483;
+            color: #F4ECF7;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: 400;
+        }
+        button:hover {
+            background-color: #4A235A;
+            transform: scale(1.05);
+        }
+        .result {
+            margin-top: 30px;
+            padding: 1.5rem;
+            background: #A569BD;
+            border-radius: 15px;
+            color: #F4ECF7;
+        }
+        .result h2 {
+            margin-top: 0;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+        .result p {
+            margin: 10px 0;
+        }
+        .result strong {
+            font-weight: 600;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #6C3483;
+            text-decoration: none;
+            font-weight: 400;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>URL Scanning</h1>
+        <form action="/url" method="POST">
+            <input type="url" name="url" placeholder="Enter URL (e.g., https://example.com)" required>
+            <button type="submit">Scan URL</button>
+        </form>
+
+        {% if scan_results %}
+        <div class="result">
+            <h2>Scan Results for {{ scan_results["url"] }}</h2>
+            <p><strong>Malicious:</strong> {{ scan_results["category_count"]["malicious"] }}</p>
+            <p><strong>Suspicious:</strong> {{ scan_results["category_count"]["suspicious"] }}</p>
+            <p><strong>Undetected:</strong> {{ scan_results["category_count"]["undetected"] }}</p>
+            <p><strong>Harmless:</strong> {{ scan_results["category_count"]["harmless"] }}</p>
+            <p><strong>Total Companies Scanned:</strong> {{ scan_results["total_companies"] }}</p>
+            <p><strong>Majority Category:</strong> {{ scan_results["majority_category"] }}</p>
+            <p><strong>Majority Result:</strong> {{ scan_results["majority_result"] }}</p>
+        </div>
+        {% endif %}
+
+        <a href="/" class="back-link">Back to Home</a>
+    </div>
+</body>
+</html>

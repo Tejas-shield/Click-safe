@@ -1,0 +1,6 @@
+{
+"varma": "vashishtavarma@gmail.com",
+"tejas": "tejasganiga2003@gmail.com",
+"teja" : "justteju2003@gmail.com",
+"sriram":"sriramkn2004@gmail.com"
+}
